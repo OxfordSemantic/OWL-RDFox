@@ -1,1 +1,33 @@
+#Before starting, run: ./RDFox sandbox . "endpoint start"
 
+#dstore create default
+curl -i -X POST "http://localhost:12110/datastores/default?type=par-complex-nn"
+
+#import > :data data.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/data" -H "Content-Type: text/turtle" --data-binary @data.ttl
+
+#import > :data ontology.fss
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/data" -H "Content-Type: text/owl-functional" --data-binary @ontology.fss
+
+#info axioms :data
+curl -i -X GET "http://localhost:12110/datastores/default/content" -H "Accept: text/owl-functional"
+
+#select * from :data where {?a ?b ?c}
+curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/> select * from :data where {?a ?b ?c}"
+
+
+#clear force
+curl -i -X PATCH "http://localhost:12110/datastores/default?operation=clear"
+
+#import > :data data.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/data" -H "Content-Type: text/turtle" --data-binary @data.ttl
+
+#import > :axioms ontology.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/axioms" -H "Content-Type: text/turtle" --data-binary @ontology.ttl
+
+#select * from :data where {?a ?b ?c}
+curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/> select * from :data where {?a ?b ?c}"
+
+#importaxioms :axioms > :data
+curl -i -X PATCH "http://localhost:12110/datastores/default/content?operation=add-axioms&source-graph-name=http://example.com/axioms&destination-graph-name=http://example.com/data"
+ 
