@@ -1,0 +1,34 @@
+#set endpoint.port 12110
+endpoint start
+
+dstore create default
+
+set output out
+
+prefix : <http://example.com/>
+
+import > :data data.ttl
+
+import > :data ontology.fss
+
+info axioms :data
+
+select * from :data where {?a ?b ?c}
+
+
+
+#-------------------------------------------
+#Now clear the datastore to start over again
+clear force
+
+import > :data data.ttl
+
+import > :axioms ontology.ttl
+
+select * from :data where {?a ?b ?c}
+
+importaxioms :axioms > :data
+
+select * from :data where {?a ?b ?c}
+
+info axioms :data

@@ -1,0 +1,22 @@
+#set endpoint.port 12110
+endpoint start
+
+dstore create default par-complex-nn owl-in-rdf-support relaxed
+
+set output out
+
+prefix : <http://example.com/>
+
+import data.ttl
+import ontology.fss
+select * where {?a ?b ?c}
+info axioms
+
+clear force
+
+import data.ttl
+import ontology.ttl
+select * where {?a ?b ?c}
+info axioms
+
+

@@ -1,0 +1,5 @@
+Prefix(:=<http://example.com/>)
+Ontology(<http://example.com/ontology/>
+	SubClassOf(:Cat :Mammal)
+	SubClassOf(:Mammal :Animal) )
+	 
