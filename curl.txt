@@ -4,30 +4,33 @@
 curl -i -X POST "http://localhost:12110/datastores/default?type=par-complex-nn"
 
 #import > :data data.ttl
-curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/data" -H "Content-Type: text/turtle" --data-binary @data.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23data" -H "Content-Type: text/turtle" --data-binary @data.ttl
 
 #import > :data ontology.fss
-curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/data" -H "Content-Type: text/owl-functional" --data-binary @ontology.fss
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23data" -H "Content-Type: text/owl-functional" --data-binary @ontology.fss
 
 #info axioms :data
 curl -i -X GET "http://localhost:12110/datastores/default/content" -H "Accept: text/owl-functional"
 
-#select * from :data where {?a ?b ?c}
-curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/> select * from :data where {?a ?b ?c}"
+#select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
+curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/ontology1#> select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}"
 
 
 #clear force
 curl -i -X PATCH "http://localhost:12110/datastores/default?operation=clear"
 
 #import > :data data.ttl
-curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/data" -H "Content-Type: text/turtle" --data-binary @data.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23data" -H "Content-Type: text/turtle" --data-binary @data.ttl
 
 #import > :axioms ontology.ttl
-curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/axioms" -H "Content-Type: text/turtle" --data-binary @ontology.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23axioms" -H "Content-Type: text/turtle" --data-binary @ontology.ttl
 
-#select * from :data where {?a ?b ?c}
-curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/> select * from :data where {?a ?b ?c}"
+#select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
+curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/ontology1#> select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}"
 
 #importaxioms :axioms > :data
-curl -i -X PATCH "http://localhost:12110/datastores/default/content?operation=add-axioms&source-graph-name=http://example.com/axioms&destination-graph-name=http://example.com/data"
+curl -i -X PATCH "http://localhost:12110/datastores/default/content?operation=add-axioms&source-graph-name=http://example.com/ontology1%23axioms&destination-graph-name=http://example.com/ontology1%23data"
+
+#select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
+curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/ontology1#> select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}"
  
