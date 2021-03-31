@@ -1,4 +1,4 @@
-#Before starting, run: ./RDFox sandbox . "endpoint start"
+#Before starting, cd into the repository and run: /path/to/RDFox sandbox . "endpoint start"
 
 #dstore create default
 curl -i -X POST "http://localhost:12110/datastores/default?type=par-complex-nn"
