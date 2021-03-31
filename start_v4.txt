@@ -8,16 +8,13 @@ set output out
 prefix : <http://example.com/ontology1#>
 
 import data.ttl
-import ontology.fss
-select ?type where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
-info axioms
 
-clear force
-
-import data.ttl
 import ontology.ttl
+
 select * where {?a ?b ?c}
+
 select ?type where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
+
 info axioms
 
 
