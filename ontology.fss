@@ -1,5 +1,5 @@
-Prefix(:=<http://example.com/>)
-Ontology(<http://example.com/ontology/>
+Prefix(:=<http://example.com/ontology1#>)
+Ontology(<http://example.com/ontology1>
 	SubClassOf(:Cat :Mammal)
 	SubClassOf(:Mammal :Animal) )
 	 

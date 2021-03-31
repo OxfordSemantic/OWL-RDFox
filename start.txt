@@ -5,7 +5,7 @@ dstore create default
 
 set output out
 
-prefix : <http://example.com/>
+prefix : <http://example.com/ontology1#>
 
 import > :data data.ttl
 
@@ -13,8 +13,7 @@ import > :data ontology.fss
 
 info axioms :data
 
-select * from :data where {?a ?b ?c}
-
+select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 
 
 #-------------------------------------------
@@ -25,7 +24,7 @@ import > :data data.ttl
 
 import > :axioms ontology.ttl
 
-select * from :data where {?a ?b ?c}
+select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 
 importaxioms :axioms > :data
 

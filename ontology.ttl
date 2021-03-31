@@ -1,4 +1,4 @@
-@prefix : <http://example.com/> .
+@prefix : <http://example.com/ontology1#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 :Cat rdfs:subClassOf :Mammal .
