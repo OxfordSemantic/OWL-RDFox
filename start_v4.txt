@@ -9,7 +9,7 @@ prefix : <http://example.com/ontology1#>
 
 import data.ttl
 import ontology.fss
-select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
+select ?type where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 info axioms
 
 clear force
@@ -17,7 +17,7 @@ clear force
 import data.ttl
 import ontology.ttl
 select * where {?a ?b ?c}
-select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
+select ?type where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 info axioms
 
 
