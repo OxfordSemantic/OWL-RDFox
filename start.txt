@@ -28,6 +28,6 @@ select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 
 importaxioms :axioms > :data
 
-select * from :data where {?a ?b ?c}
+select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 
 info axioms :data
