@@ -22,14 +22,14 @@ curl -i -X PATCH "http://localhost:12110/datastores/default?operation=clear"
 #import > :data data.ttl
 curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23data" -H "Content-Type: text/turtle" --data-binary @data.ttl
 
-#import > :axioms ontology.ttl
-curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23axioms" -H "Content-Type: text/turtle" --data-binary @ontology.ttl
+#import > :ontology ontology.ttl
+curl -i -X POST "http://localhost:12110/datastores/default/content?default-graph-name=http://example.com/ontology1%23ontology" -H "Content-Type: text/turtle" --data-binary @ontology.ttl
 
 #select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/ontology1#> select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}"
 
-#importaxioms :axioms > :data
-curl -i -X PATCH "http://localhost:12110/datastores/default/content?operation=add-axioms&source-graph-name=http://example.com/ontology1%23axioms&destination-graph-name=http://example.com/ontology1%23data"
+#importaxioms :ontology > :data
+curl -i -X PATCH "http://localhost:12110/datastores/default/content?operation=add-axioms&source-graph-name=http://example.com/ontology1%23ontology&destination-graph-name=http://example.com/ontology1%23data"
 
 #select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 curl -i -X POST "http://localhost:12110/datastores/default/sparql" -d "query=prefix : <http://example.com/ontology1#> select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}"
