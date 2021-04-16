@@ -1,5 +1,5 @@
-Prefix(:=<http://example.com/ontology1#>)
-Ontology(<http://example.com/ontology1>
+Prefix(:=<http://www.example.com/ontology1#>)
+Ontology(<http://www.example.com/ontology1>
 	Annotation(rdfox:NamedGraph :data)
         SubClassOf(:Cat :Mammal)
 	SubClassOf(:Mammal :Animal) )
