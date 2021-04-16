@@ -5,7 +5,7 @@ dstore create default
 
 set output out
 
-prefix : <http://example.com/ontology1#>
+prefix : <http://www.example.com/ontology1#>
 
 import > :data data.ttl
 
