@@ -22,7 +22,7 @@ clear force
 
 import > :data data.ttl
 
-import > :axioms ontology.ttl
+import > :ontology ontology.ttl
 
 select ?type from :data where { ?cat a :Cat , ?type . FILTER(?type != :Cat)}
 
